@@ -10,6 +10,7 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(android.content.Loader<ArrayList<WeatherItems>> loader, ArrayList<WeatherItems> data) {
         adapter.setData(data);
+        Log.e("TEST adapter count", "onLoadFinished: " + adapter.getItemCount() );
+        Log.e("TEST item size", "onLoadFinished: " + data.size() );
     }
 
     @Override
@@ -73,9 +76,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         @Override
         public void onClick(View v) {
             String city = edtCity.getText().toString();
+            Log.e("test ", city );
+
             if (TextUtils.isEmpty(city)) return;
             Bundle bundle = new Bundle();
             bundle.putString(EXTRAS_CITY, city);
+
             getLoaderManager().restartLoader(0, bundle, MainActivity.this);
         }
     };

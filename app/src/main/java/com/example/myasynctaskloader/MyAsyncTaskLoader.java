@@ -2,6 +2,7 @@ package com.example.myasynctaskloader;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,6 +82,9 @@ public class MyAsyncTaskLoader extends AsyncTaskLoader<ArrayList<WeatherItems>> 
                     String result = new String(responseBody);
                     JSONObject responseObject = new JSONObject(result);
                     JSONArray list = responseObject.getJSONArray("list");
+
+                    Log.e("Testing : ", result);
+
                     for (int i = 0; i < list.length(); i++) {
                         JSONObject weather = list.getJSONObject(i);
                         WeatherItems weatherItems = new WeatherItems(weather);

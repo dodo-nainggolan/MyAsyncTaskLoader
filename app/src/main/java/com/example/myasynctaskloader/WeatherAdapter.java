@@ -1,5 +1,6 @@
 package com.example.myasynctaskloader;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
     public void setData(ArrayList<WeatherItems> items) {
         mData.clear();
+
+        Log.e("ERROR", "setData: " + items.size() );
+
         mData.addAll(items);
         notifyDataSetChanged();
     }
@@ -49,7 +53,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mData.size();
     }
 
     public class WeatherViewHolder extends RecyclerView.ViewHolder {
